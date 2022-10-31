@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\comment;
 use App\Models\post;
 
 class PostController extends Controller
@@ -37,9 +38,10 @@ class PostController extends Controller
     }
     
     public function detail($id){
-        $data = post::find($id);
-        // return $data;
-        return view('post.detail', compact('data'));
+        // $comment = comment::with('User')->get();
+        $datas = post::where('id', $id)->with('comment.User')->get();
+        // return $datas;
+        return view('post.detail', compact('datas'));
     }
 
 

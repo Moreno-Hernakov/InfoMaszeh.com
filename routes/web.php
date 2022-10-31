@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\loginController;
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home', [PostController::class, 'index']);
     Route::post('/post', [PostController::class, 'post']);
-
     Route::get('/add', [PostController::class, 'addCreate']);
     Route::post('/add', [PostController::class, 'addStore']);
     Route::get('/detail/{id}', [PostController::class, 'detail']);
+
+
+    Route::get('/comment', [CommentController::class, 'index']);
+    Route::post('/comment', [CommentController::class, 'store']);
 });

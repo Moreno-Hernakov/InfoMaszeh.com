@@ -14,6 +14,7 @@
 <body>
     <div class="container m-5">
       <a href="/home" class="btn btn-primary m-3">kembali</a>
+      @foreach ($datas as $data)
       <div class="card mb-3">
         <img src="{{asset('storage/'.$data->img)}}" height="500px" class="card-img-top" alt="...">
         <div class="card-body">
@@ -25,26 +26,38 @@
           {{-- =============================== KOMENTAR ================================ --}}
           {{-- <div class="container mt-5 mb-5"> --}}
       <div class="d-flex justify-content-center row ">
-        <div class="d-flex flex-column col-md-8 shadow">
+        <div class="d-flex flex-column col-md-8">
           <div class="coment-bottom bg-white p-2 px-4">
-            <div class="d-flex mt-4 mb-4">
-              {{-- <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"> --}}
-              <input type="text" class="form-control" placeholder="Add comment" style="width: 700px">
-              <button class="btn btn-primary" type="button">Comment</button>
-            </div>
-            <div class="commented-section mt-2">
-              <div class="d-flex align-items-center justify-content-between" style="width: 200px">
-                <h5 class="mr-2 ">Corey oates</h5>
-                <span class="mb-1 ml-2">4 hours ago</span>
+            {{-- <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"> --}}
+            <form action="/comment" method="post">
+              <div class="d-flex mt-4 mb-4">
+                @csrf
+                <input type="hidden" name="post_id" value="{{$data->id}}">
+                <input type="text" name="konten" class="form-control" placeholder="Add comment" style="width: 700px">
+                <button class="btn btn-primary" type="submit">Comment</button>
               </div>
-              <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
+            </form>
+            @if(count($data->comment) < 1)
+              <p class="text-center shadow p-3">komentar kosong, jadilah yang pertama mengomentari</p>
+            @endif
+            @foreach ($data->comment as $comment)
+              <div class="card mb-3 shadow p-3">
+                <div class="d-flex align-items-center justify-content-between" style="width: 200px">
+                  <h5 class="mr-2 ">{{$comment->user->name}}</h5>
+                  <span class="mb-1 ml-2">{{$comment->created_at}}</span>
+                </div>
+                <div class="comment-text-sm">
+                  <span>{{$comment->konten}}</span>
+                </div>
                 <div class="reply-section">
-                <h6 class="ml-5 mt-1">Reply</h6>
+                  <h6 class="ml-5 mt-1">Reply</h6>
                 </div>
               </div>
-            </div>
+              @endforeach
           </div>
+        </div>
       </div>
+      @endforeach
         {{-- </div> --}}
     </div>
     

@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class reply extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['$id'];
+
+    public function post(){
+        return $this->belongsTo(post::class);
+    }
+
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function comment(){
+        return $this->belongsTo(comment::class);
+    }
+
 }

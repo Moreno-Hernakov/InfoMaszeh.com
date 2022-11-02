@@ -39,7 +39,7 @@ class PostController extends Controller
     
     public function detail($id){
         // $comment = comment::with('User')->get();
-        $datas = post::where('id', $id)->with('comment.User')->get();
+        $datas = post::where('id', $id)->with('comment.User', 'comment.reply.User')->get();
         // return $datas;
         return view('post.detail', compact('datas'));
     }

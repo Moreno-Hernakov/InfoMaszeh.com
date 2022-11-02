@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/add', [PostController::class, 'addStore']);
     Route::get('/detail/{id}', [PostController::class, 'detail']);
 
-
     Route::get('/comment', [CommentController::class, 'index']);
     Route::post('/comment', [CommentController::class, 'store']);
+    Route::post('/reply', [CommentController::class, 'reply']);
 });

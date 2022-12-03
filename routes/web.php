@@ -23,7 +23,7 @@ use App\Http\Controllers\loginController;
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [UserController::class, 'index'])->name('login');
+    Route::get('/', [UserController::class, 'index'])->name('login');
     Route::post('/login', [UserController::class, 'store']);
 });
 

@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
+    @include('layouts.navbar')
     <div class="container col-md-4">
         <div class="mt-5">
             <form action="/login" method="post">
@@ -29,11 +30,11 @@
                 </div>
               
                  <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                <button type="submit" class="btn btn-warning btn-block mb-4">Sign in</button>
               
                 <!-- Register buttons -->
                 <div class="text-center">
-                  <p>Not a member? <a href="#!">Register</a></p>
+                  <p>Not a member? <a class="text-warning" href="#!">Register</a></p>
                 </div>
             </form>
         </div>

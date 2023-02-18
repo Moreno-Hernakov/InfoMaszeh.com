@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Category;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -20,7 +21,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'user',
             'email' => 'user@example.com',
             'role' => 'user',
-            'password' => bcrypt('1234f5678'),
+            'password' => bcrypt('123'),
         ]);
+
+        for ($i=1; $i <= 3; $i++) { 
+            Category::create([
+                'nama' => 'category'.$i
+            ]);
+        }
     }
 }

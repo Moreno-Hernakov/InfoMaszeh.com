@@ -15,10 +15,6 @@ class reply extends Model
         return $this->belongsTo(post::class);
     }
 
-    public function User(){
-        return $this->belongsTo(User::class);
-    }
-
     public function comment(){
         return $this->belongsTo(comment::class);
     }

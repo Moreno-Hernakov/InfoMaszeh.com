@@ -42,10 +42,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function reply(){
-        return $this->hasMany(reply::class);
-    }
-
     public function post(){
         return $this->hasMany(post::class);
     }

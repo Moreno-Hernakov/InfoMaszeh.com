@@ -14,10 +14,6 @@ class comment extends Model
         return $this->belongsTo(post::class);
     }
 
-    public function User(){
-        return $this->belongsTo(User::class);
-    }
-
     public function reply(){
         return $this->hasMany(reply::class);
     }

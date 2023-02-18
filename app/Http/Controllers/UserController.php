@@ -16,7 +16,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
      
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function store(Request $request){
@@ -29,7 +29,7 @@ class UserController extends Controller
         if(Auth::attempt($data)) {
             $request->session()->regenerate();
  
-            return redirect()->intended('/home');
+            return redirect()->intended('/admin/berita');
         }else{
             return "not login";
         }

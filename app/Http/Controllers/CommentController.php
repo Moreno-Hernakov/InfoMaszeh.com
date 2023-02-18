@@ -8,16 +8,14 @@ use App\Models\reply;
 
 class CommentController extends Controller
 {
-    public function index(){
-        return comment::get();
-    }
     public function store(Request $request){
+        // return $request;
         $data = $request->validate([
             'konten' => 'required'
         ]);
 
         $data['post_id'] = $request->post('post_id');
-        $data['user_id'] = auth()->user()->id;
+        $data['nama'] = $request->post('nama');
 
         comment::create($data);
 
@@ -31,10 +29,21 @@ class CommentController extends Controller
         ]);
 
         $data['comment_id'] = $request->comment_id;
-        $data['user_id'] = auth()->user()->id;
+        $data['nama'] = $request->nama;
 
         reply::create($data);
 
+        return redirect()->back();
+    }
+
+    public function replyDestroy($id){
+        // return $id;
+        reply::destroy($id);
+        return redirect()->back();
+    }
+
+    public function commentDestroy($id){
+        comment::destroy($id);
         return redirect()->back();
     }
 }
